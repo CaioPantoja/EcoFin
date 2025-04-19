@@ -8,7 +8,10 @@ import br.com.fiap.service.AccountService;
 import br.com.fiap.service.GoalService;
 import br.com.fiap.service.TransactionService;
 import br.com.fiap.service.UserService;
+import br.com.fiap.factory.ConnectionFactory;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,6 +24,13 @@ public class App {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+
+        try {
+            Connection conexao = ConnectionFactory.getConnection();
+            System.out.println("Conexão realizada!");
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());}
+
         boolean running = true;
         while (running) {
             System.out.println("\n=== EcoFin Menu ===");
