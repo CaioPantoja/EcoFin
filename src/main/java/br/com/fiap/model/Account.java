@@ -1,13 +1,11 @@
 package br.com.fiap.model;
 
-import java.util.ArrayList;
-
 public class Account extends FinancialEntity {
     private double balance;
     private String accountType;
     private String currency;
 
-    public Account(String accountId, String userId, String name, double balance, String accountType, String currency) {
+    public Account(int accountId, int userId, String name, double balance, String accountType, String currency) {
         super(accountId, userId, name);
         this.balance = balance;
         this.accountType = accountType;
@@ -37,14 +35,5 @@ public class Account extends FinancialEntity {
         System.out.println("Type: " + this.accountType);
         System.out.println("Balance: " + this.balance);
         System.out.println("Currency: " + this.currency);
-    }
-
-    public static Account findAccountById(String accountId, String userId, ArrayList<Account> accounts) {
-        for (Account account : accounts) {
-            if (account.getId().equals(accountId) && account.getUserId().equals(userId)) {
-                return account;
-            }
-        }
-        return null;
     }
 }

@@ -1,8 +1,5 @@
 package br.com.fiap;
 
-import br.com.fiap.model.Account;
-import br.com.fiap.model.Goal;
-import br.com.fiap.model.Transaction;
 import br.com.fiap.model.User;
 import br.com.fiap.service.AccountService;
 import br.com.fiap.service.GoalService;
@@ -12,24 +9,14 @@ import br.com.fiap.factory.ConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
-    private static ArrayList<User> users = new ArrayList<>();
-    private static ArrayList<Account> accounts = new ArrayList<>();
-    private static ArrayList<Transaction> transactions = new ArrayList<>();
-    private static ArrayList<Goal> goals = new ArrayList<>();
     private static User currentUser = null;
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        try {
-            Connection conexao = ConnectionFactory.getConnection();
-            System.out.println("Conexão realizada!");
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());}
 
         boolean running = true;
         while (running) {
@@ -48,6 +35,7 @@ public class App {
                 System.out.println("7. View Accounts");
                 System.out.println("8. Log out");
             }
+
             System.out.print("Choose an option: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -55,10 +43,10 @@ public class App {
             if (currentUser == null) {
                 switch (choice) {
                     case 1:
-                        UserService.createUser(scanner, users);
+                        currentUser = UserService.createUser(scanner);
                         break;
                     case 2:
-                        currentUser = UserService.loginUser(scanner, users);
+                        currentUser = UserService.loginUser(scanner);
                         break;
                     case 3:
                         running = false;
@@ -70,25 +58,25 @@ public class App {
             } else {
                 switch (choice) {
                     case 1:
-                        AccountService.createAccount(scanner, currentUser.getUserId(), accounts);
+                        AccountService.createAccount(scanner, currentUser.getUserId());
                         break;
                     case 2:
-                        AccountService.depositMoney(scanner, currentUser.getUserId(), accounts, transactions);
+                        AccountService.depositMoney(scanner, currentUser.getUserId());
                         break;
                     case 3:
-                        AccountService.withdrawMoney(scanner, currentUser.getUserId(), accounts, transactions);
+                        AccountService.withdrawMoney(scanner, currentUser.getUserId());
                         break;
                     case 4:
-                        GoalService.setGoal(scanner, currentUser.getUserId(), accounts, goals);
+                        GoalService.setGoal(scanner, currentUser.getUserId());
                         break;
                     case 5:
-                        GoalService.viewGoals(currentUser.getUserId(), goals, accounts);
+                        GoalService.viewGoals(currentUser.getUserId());
                         break;
                     case 6:
-                        TransactionService.viewTransactions(currentUser.getUserId(), accounts, transactions);
+                        TransactionService.viewTransactions(currentUser.getUserId());
                         break;
                     case 7:
-                        AccountService.viewAccounts(currentUser.getUserId(), accounts);
+                        AccountService.viewAccounts(currentUser.getUserId());
                         break;
                     case 8:
                         currentUser = null;
@@ -99,6 +87,7 @@ public class App {
                 }
             }
         }
+
         scanner.close();
     }
 }
