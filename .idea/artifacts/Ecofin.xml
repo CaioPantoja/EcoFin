@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Ecofin">
+    <output-path>$PROJECT_DIR$/out/artifacts/Ecofin</output-path>
+    <root id="root" />
+  </artifact>
+</component>
