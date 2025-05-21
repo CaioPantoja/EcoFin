@@ -1,5 +1,7 @@
 package br.com.fiap.factory;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,26 +11,19 @@ import java.util.Properties;
 
 public class ConnectionFactory {
 
-    private static final Properties prop = new Properties();
-    private static final String URL;
-    private static final String USERNAME;
-    private static final String PASSWORD;
-
-    static {
+    public static Connection getConnection() {
         try {
-            FileInputStream fis = new FileInputStream("config.properties");
-            prop.load(fis);
-        } catch (IOException e) {
-            System.err.println("Erro ao carregar o arquivo config.properties");
-            e.printStackTrace();
+            Class.forName("oracle.jdbc.OracleDriver");
+            Dotenv dotenv = Dotenv.load();
+            return DriverManager.getConnection(
+                    dotenv.get("DB_URL"),
+                    dotenv.get("DB_USER"),
+                    dotenv.get("DB_PASSWORD")
+            );
+        } catch (Exception e) {
+            System.err.println("Erro ao conectar: " + e.getMessage());
+            throw new RuntimeException(e);
         }
-
-        URL = prop.getProperty("db.url");
-        USERNAME = prop.getProperty("db.user");
-        PASSWORD = prop.getProperty("db.password");
     }
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
-    }
 }

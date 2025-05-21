@@ -43,10 +43,10 @@ public class App {
             if (currentUser == null) {
                 switch (choice) {
                     case 1:
-                        currentUser = UserService.createUser(scanner);
+                        //currentUser = UserService.createUser(scanner);
                         break;
                     case 2:
-                        currentUser = UserService.loginUser(scanner);
+                        //currentUser = UserService.loginUser(scanner);
                         break;
                     case 3:
                         running = false;
