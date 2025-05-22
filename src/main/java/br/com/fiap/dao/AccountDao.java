@@ -107,4 +107,21 @@ public class AccountDao {
             System.err.println("Error updating balance: " + e.getMessage());
         }
     }
+
+    public double getTotalBalanceByUserId(int userId) {
+        String sql = "SELECT SUM(balance) FROM accounts WHERE user_id = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getDouble(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error fetching total balance: " + e.getMessage(), e);
+        }
+        return 0.0;
+    }
 }

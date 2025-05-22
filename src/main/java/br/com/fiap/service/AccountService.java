@@ -40,4 +40,9 @@ public class AccountService {
     public static List<Account> getAccountsByUserId(int userId) {
         return accountDao.findByUserId(userId);
     }
+
+    public static double getTotalBalanceByUserId(int userId) {
+        return accountDao.getTotalBalanceByUserId(userId);
+    }
+
 }
