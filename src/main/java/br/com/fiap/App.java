@@ -58,25 +58,25 @@ public class App {
             } else {
                 switch (choice) {
                     case 1:
-                        AccountService.createAccount(scanner, currentUser.getUserId());
+                    //    AccountService.createAccount(scanner, currentUser.getUserId());
                         break;
                     case 2:
-                        AccountService.depositMoney(scanner, currentUser.getUserId());
+                    //    AccountService.depositMoney(scanner, currentUser.getUserId());
                         break;
                     case 3:
-                        AccountService.withdrawMoney(scanner, currentUser.getUserId());
+                    //    AccountService.withdrawMoney(scanner, currentUser.getUserId());
                         break;
                     case 4:
-                        GoalService.setGoal(scanner, currentUser.getUserId());
+                    //    GoalService.setGoal(scanner, currentUser.getUserId());
                         break;
                     case 5:
-                        GoalService.viewGoals(currentUser.getUserId());
+                    //    GoalService.viewGoals(currentUser.getUserId());
                         break;
                     case 6:
-                        TransactionService.viewTransactions(currentUser.getUserId());
+                    //    TransactionService.viewTransactions(currentUser.getUserId());
                         break;
                     case 7:
-                        AccountService.viewAccounts(currentUser.getUserId());
+                    //    AccountService.viewAccounts(currentUser.getUserId());
                         break;
                     case 8:
                         currentUser = null;
