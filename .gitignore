@@ -42,4 +42,4 @@ build/
 **/.env
 **/.env*
 out
-.idea
+**/.idea
