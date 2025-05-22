@@ -2,7 +2,6 @@ package br.com.fiap.service;
 
 import br.com.fiap.dao.UserDao;
 import br.com.fiap.model.User;
-import java.util.Scanner;
 
 public class UserService {
 
