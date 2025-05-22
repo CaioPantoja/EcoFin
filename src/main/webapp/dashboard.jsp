@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="ui" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -18,8 +19,9 @@
 
         body {
             font-family: 'Segoe UI', sans-serif;
-            background-color: #f5f5f5;
+            background-color: #D9D9D9;
             color: #333;
+            padding-bottom: 100px;
         }
 
         .container {
@@ -167,6 +169,7 @@
     </style>
 </head>
 <body>
+    <ui:header />
 <div class="container">
     <div class="top-cards">
         <div class="card highlight">
@@ -197,5 +200,6 @@
     </div>
 
 </div>
+<ui:menu active="Home"/>
 </body>
 </html>
