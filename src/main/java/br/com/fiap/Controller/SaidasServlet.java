@@ -12,6 +12,6 @@ public class SaidasServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/pages/saidas.jsp").forward(request, response);
+        request.getRequestDispatcher("saidas.jsp").forward(request, response);
     }
 }
