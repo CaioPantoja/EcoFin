@@ -171,7 +171,7 @@
     <div class="top-cards">
         <div class="card highlight">
             <h2>Receita Total:</h2>
-            <p class="value">R$ 13.506,59</p>
+            <p class="value">${totalBalance}</p>
         </div>
         <div class="card-filter">
             <div class="card">
