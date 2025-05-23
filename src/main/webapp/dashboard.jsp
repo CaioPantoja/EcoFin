@@ -176,7 +176,7 @@
         <div class="card-filter">
             <div class="card">
                 <h2>A alcançar:</h2>
-                <p class="value" style="color: #2ca58d;">R$ 1.390,90</p>
+                <p class="value" style="color: #2ca58d;">${amountMissing}</p>
             </div>
             <div class="filter-icon">
                 <img src="https://i.ibb.co/zW0jGFG8/Vector.png" alt="Filtro" />

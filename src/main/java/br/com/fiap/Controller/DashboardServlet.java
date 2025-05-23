@@ -1,6 +1,7 @@
 package br.com.fiap.Controller;
 
 import br.com.fiap.service.AccountService;
+import br.com.fiap.service.GoalService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import java.io.IOException;
 @WebServlet("/dashboard")
 public class DashboardServlet extends HttpServlet {
     private final AccountService accountService = new AccountService();
+    private final GoalService goalService = new GoalService();
 
     private void carregarDashboard(HttpServletRequest request) {
         // Futuro: Recupere o ID do usuário autenticado da sessão
@@ -25,7 +27,9 @@ public class DashboardServlet extends HttpServlet {
 
         int userId = 1; // Temporário, substituir por: (int) session.getAttribute("userId")
         Double total = accountService.getTotalBalanceByUserId(userId);
+        Double amoutMissing = goalService.getAmountMissingToReachGoals(userId);
         request.setAttribute("totalBalance", total);
+        request.setAttribute("amountMissing", amoutMissing);
     }
 
     private void processarRequisicao(HttpServletRequest request, HttpServletResponse response)
