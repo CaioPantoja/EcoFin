@@ -82,30 +82,18 @@
       <button class="btn-add"><i class="fas fa-plus"></i></button>
       <p class="text-muted fw-bold">Entradas:</p>
 
-      <div class="entry-item">
-        <span class="entry-label">Salário:</span><br>
-        R$ 10.000,00 <span class="float-end">Data 10/08/2024</span>
-        <i class="fas fa-pen float-end me-2"></i>
-      </div>
-      <div class="entry-item">
-        <span class="entry-label">Salário:</span><br>
-        R$ 10.000,00 <span class="float-end">Data 10/07/2024</span>
-        <i class="fas fa-pen float-end me-2"></i>
-      </div>
-      <div class="entry-item border-0">
-        <span class="entry-label">Renda Aluguel:</span><br>
-        R$ 7.000,00 <span class="float-end">Data 07/07/2024</span>
-        <i class="fas fa-pen float-end me-2"></i>
-      </div>
+      <!-- Loop sobre a lista -->
+      <c:forEach var="e" items="${entradas}" varStatus="st">
+        <div class="entry-item ${st.last ? 'border-0' : ''}">
+          <span class="entry-label">${e.type == 'IN' ? 'Entrada' : e.type}:</span><br/>
+          R$ ${e.amount} 
+          <span class="float-end">Data ${e.date}</span>
+          <i class="fas fa-pen float-end me-2"></i>
+        </div>
+      </c:forEach>
     </div>
   </div>
 
-  <div class="footer-menu">
-    <i class="fas fa-home"></i>
-    <i class="fas fa-arrow-down"></i>
-    <i class="fas fa-arrow-up"></i>
-    <i class="fas fa-chart-line"></i>
-    <i class="fas fa-user"></i>
-  </div>
+  <!-- seu footer-menu -->
 </body>
 </html>
