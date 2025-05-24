@@ -29,7 +29,7 @@ public class TransactionDao {
     public List<Transaction> findByUserId(int userId) {
         List<Transaction> transactions = new ArrayList<>();
         String sql = """
-                SELECT t.transaction_id, t.account_id, t.type, t.amount, TO_CHAR(t.transaction_date, 'YYYY-MM-DD') AS transaction_date
+                SELECT t.transaction_id, t.account_id,a.name as account_name, t.type, t.amount, TO_CHAR(t.transaction_date, 'YYYY-MM-DD') AS transaction_date
                 FROM transactions t
                 JOIN accounts a ON t.account_id = a.account_id
                 WHERE a.user_id = ?
@@ -45,6 +45,7 @@ public class TransactionDao {
                 Transaction t = new Transaction(
                         rs.getInt("transaction_id"),
                         rs.getInt("account_id"),
+                        rs.getString("account_name"),
                         rs.getString("type"),
                         rs.getDouble("amount"),
                         rs.getString("transaction_date")

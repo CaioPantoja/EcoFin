@@ -1,8 +1,10 @@
 package br.com.fiap.Controller;
 
+import br.com.fiap.model.Transaction;
 import br.com.fiap.model.User;
 import br.com.fiap.service.AccountService;
 import br.com.fiap.service.GoalService;
+import br.com.fiap.service.TransactionService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/dashboard")
 public class DashboardServlet extends HttpServlet {
@@ -22,8 +25,11 @@ public class DashboardServlet extends HttpServlet {
 
         Double total = accountService.getTotalBalanceByUserId(userId);
         Double amountMissing = goalService.getAmountMissingToReachGoals(userId);
+        List<Transaction> transactions = TransactionService.getTransactionsByUserId(userId);
+
         request.setAttribute("totalBalance", total);
         request.setAttribute("amountMissing", amountMissing);
+        request.setAttribute("transactions", transactions);
     }
 
 
