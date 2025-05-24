@@ -1,5 +1,6 @@
 package br.com.fiap.Controller;
 
+import br.com.fiap.model.User;
 import br.com.fiap.service.AccountService;
 import br.com.fiap.service.GoalService;
 import jakarta.servlet.RequestDispatcher;
@@ -17,24 +18,29 @@ public class DashboardServlet extends HttpServlet {
     private final AccountService accountService = new AccountService();
     private final GoalService goalService = new GoalService();
 
-    private void carregarDashboard(HttpServletRequest request) {
-        // Futuro: Recupere o ID do usuário autenticado da sessão
-//         HttpSession session = request.getSession(false);
-//         if (session == null || session.getAttribute("userId") == null) {
-//             request.setAttribute("error", "Usuário não autenticado.");
-//             return;
-//         }
+    private void carregarDashboard(HttpServletRequest request, int userId) throws IOException {
 
-        int userId = 1; // Temporário, substituir por: (int) session.getAttribute("userId")
         Double total = accountService.getTotalBalanceByUserId(userId);
-        Double amoutMissing = goalService.getAmountMissingToReachGoals(userId);
+        Double amountMissing = goalService.getAmountMissingToReachGoals(userId);
         request.setAttribute("totalBalance", total);
-        request.setAttribute("amountMissing", amoutMissing);
+        request.setAttribute("amountMissing", amountMissing);
     }
+
 
     private void processarRequisicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        carregarDashboard(request);
+
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("user") == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        User user = (User) session.getAttribute("user");
+        int userId = user.getUserId();
+
+        carregarDashboard(request, userId);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("dashboard.jsp");
         dispatcher.forward(request, response);
     }
