@@ -33,4 +33,12 @@ public class TransactionService {
     public static List<Transaction> getTransactionsByUserId(int userId) {
         return transactionDao.findByUserId(userId);
     }
+
+    public static List<Transaction> getTransactionsDepositByUserId(int userId) {
+        return transactionDao.findDepositsByUserId(userId);
+    }
+
+    public static List<Transaction> getTransactionsWithdrawalByUserId(int userId) {
+        return transactionDao.findWithdrawalByUserId(userId);
+    }
 }
