@@ -28,13 +28,9 @@ public class LoginServlet extends HttpServlet {
 
         User user = userService.loginUser(email, password);
 
-        System.out.println(email);
-        System.out.println(password);
-
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            System.out.println(user);
             response.sendRedirect("dashboard");
 
         } else {

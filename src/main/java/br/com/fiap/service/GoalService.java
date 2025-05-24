@@ -27,4 +27,16 @@ public class GoalService {
             throw new RuntimeException("Error fetching goals: " + e.getMessage(), e);
         }
     }
+
+    public static double getTotalGoalsValueByUserId(int userId) {
+        return goalDao.getTotalGoalsValueByUserId(userId);
+    }
+
+    public static double getAmountMissingToReachGoals(int userId) {
+        double totalBalance = AccountService.getTotalBalanceByUserId(userId);
+        double totalGoals = getTotalGoalsValueByUserId(userId);
+
+        double missing = totalGoals - totalBalance;
+        return missing > 0 ? missing : 0.0;
+    }
 }
