@@ -34,12 +34,14 @@ public class TransactionDao {
                 JOIN accounts a ON t.account_id = a.account_id
                 WHERE a.user_id = ?
                 """;
-
+        return fetchTransactions(userId, sql);
+    }
     /** Somente entradas (type = 'Deposit') de um usuário */
     public List<Transaction> findDepositsByUserId(int userId) {
         String sql = """
             SELECT t.transaction_id,
                    t.account_id,
+                   a.name as account_name,
                    t.type,
                    t.amount,
                    TO_CHAR(t.transaction_date, 'YYYY-MM-DD') AS transaction_date
@@ -56,6 +58,7 @@ public class TransactionDao {
         String sql = """
             SELECT t.transaction_id,
                    t.account_id,
+                   a.name as account_name,
                    t.type,
                    t.amount,
                    TO_CHAR(t.transaction_date, 'YYYY-MM-DD') AS transaction_date
