@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="ui" tagdir="/WEB-INF/tags" %>
 <%@ page import="java.util.List" %>
 <%@ page import="br.com.fiap.model.Transaction" %>
 <!DOCTYPE html>
@@ -14,8 +15,9 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Segoe UI', sans-serif;
-            background-color: #f5f5f5;
+            background-color: #D9D9D9;
             color: #333;
+            padding-bottom: 100px;
         }
         .container {
             margin: 0 auto;
@@ -111,6 +113,7 @@
     </style>
 </head>
 <body>
+    <ui:header />
 <div class="container">
     <div class="top-cards">
         <div class="card highlight">
@@ -163,5 +166,6 @@
         </tbody>
     </table>
 </div>
+<ui:menu active="Home"/>
 </body>
 </html>

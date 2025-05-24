@@ -1,30 +1,33 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page language="java" %>
-<html>
-<head>
-    <title>Login - Fintech</title>
-</head>
-<body>
-<h2>Login</h2>
-<form action="login" method="post">
-    <label>Email:</label><br/>
-    <input type="email" name="email" required><br/><br/>
+  <%@ page language="java" %>
+    <%@ taglib prefix="ui" tagdir="/WEB-INF/tags" %>
+      <html>
 
-    <label>Senha:</label><br/>
-    <input type="password" name="password" required><br/><br/>
+      <head>
+        <link rel="stylesheet" href="/css/global.css" />
+        <title>Login - Fintech</title>
+      </head>
 
-    <input type="submit" value="Entrar"><br/><br/>
+      <body style="padding: 0;">
+        <ui:header />
+        <h2>Login</h2>
+        <form action="login" method="post">
+          <label>Email:</label><br />
+          <input type="email" name="email" required><br /><br />
 
-    <a href="register.jsp">Ainda não tem conta? Cadastre-se</a>
-</form>
+          <label>Senha:</label><br />
+          <input type="password" name="password" required><br /><br />
 
-<%
-    String error = (String) request.getAttribute("error");
-    if (error != null) {
-%>
-<p style="color: red;"><%= error %></p>
-<%
-    }
-%>
-</body>
-</html>
+          <input type="submit" value="Entrar"><br /><br />
+
+          <a href="register.jsp">Ainda não tem conta? Cadastre-se</a>
+        </form>
+
+        <% String error=(String) request.getAttribute("error"); if (error !=null) { %>
+          <p style="color: red;">
+            <%= error %>
+          </p>
+          <% } %>
+      </body>
+
+      </html>
