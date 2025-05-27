@@ -82,7 +82,7 @@
       font-size: 0.8rem;
     }
 
-    .erro {
+    .error {
       color: red;
       font-size: 0.9rem;
     }
@@ -116,8 +116,8 @@
           <a href="#" class="link-small">Esqueceu a senha? Clique aqui.</a>
         </div>
 
-        <% if (request.getAttribute("erro") != null) { %>
-        <div class="erro"><%= request.getAttribute("erro") %></div>
+        <% if (request.getAttribute("error") != null) { %>
+        <div class="error"><%= request.getAttribute("error") %></div>
         <% } %>
 
         <button type="submit" class="btn btn-custom">Login</button>
